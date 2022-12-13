@@ -57,6 +57,7 @@
 
 .elements {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   width: 100%;
 }
@@ -97,5 +98,12 @@
   }
   .logo img {
     filter: invert(1);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .quizzes,
+  .editor {
+    width: 100%;
   }
 }
