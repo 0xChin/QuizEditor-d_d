@@ -8,7 +8,7 @@ import "prismjs/components/prism-javascript";
 import "prismjs/themes/prism.css"; //Example style, you can use another
 import { useState } from "react";
 import Quiz from "../components/Quiz";
-import { Button } from "@chakra-ui/react";
+import { Button, Input, FormLabel } from "@chakra-ui/react";
 
 export default function Home() {
   const [code, setCode] = useState(
@@ -74,6 +74,14 @@ export default function Home() {
     }
   };
 
+  const quiz = () => JSON.parse(code);
+
+  const changeTitle = (v) => {
+    const quizCopy = quiz();
+    quizCopy.title = v.target.value;
+    setCode(JSON.stringify(quizCopy, null, 2));
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -92,8 +100,18 @@ export default function Home() {
         <div className={styles.elements}>
           <div className={styles.quizzes}>
             <h2 className={styles.sectionTitle}>Preview</h2>
-            <h4 className={styles.quizzesTitle}>{JSON.parse(code).title}</h4>
-            <Quiz quiz={code} />
+            <div className={styles.titleContainer}>
+              <FormLabel textAlign="center">Title:</FormLabel>
+              <Input
+                className={styles.quizzesTitle}
+                value={quiz().title}
+                id="title"
+                onChange={changeTitle}
+                w="50%"
+                textAlign="center"
+              />
+            </div>
+            <Quiz quiz={code} setCode={setCode} />
           </div>
           <div className={styles.editor}>
             <h2 className={styles.sectionTitle}>JSON</h2>
@@ -145,7 +163,13 @@ export default function Home() {
           rel="noopener noreferrer"
         >
           Made with
-          <Image src="/love.svg" alt="Love" width={32} height={16} />
+          <Image
+            src="/love.svg"
+            alt="Love"
+            width={32}
+            height={16}
+            className={styles.logo}
+          />
           by Chiin for D_D Academy
         </a>
       </footer>
