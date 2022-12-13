@@ -1,0 +1,8 @@
+.trash {
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+.trashIcon {
+    margin-left: 2px;
+}
