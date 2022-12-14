@@ -149,6 +149,7 @@ export default function Home() {
               style={{
                 fontFamily: '"Fira code", "Fira Mono", monospace',
                 fontSize: 12,
+                width: "100%",
               }}
               disabled
             />
